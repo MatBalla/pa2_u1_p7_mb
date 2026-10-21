@@ -5,18 +5,20 @@ import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.inject.Inject;
 
-@QuarkusMain
-public class Main implements QuarkusApplication {
+@QuarkusMain //Se le indica a Quarkus que esta es la clase principal de la aplicacion
+public class Main implements QuarkusApplication {//Se implementa la interfaz QuarkusApplication
+
     @Inject 
-    private PedidoService pedidoService;
+    private PedidoService pedidoService; //Inyeccion por atributo, se usa la anotacion @Inject para que el contenedor ArC se encargue de crear el objeto e inyectarlo en la clase Main
     public static void main(String[] args) {
         Quarkus.run(Main.class, args);
 
     }
+
+    //Todo se hace en este metodo run
     @Override 
-    public int run(String... args){
+    public int run(String... args){ //Se implementa el metodo run de la interfaz QuarkusApplication
         System.out.println("Iniciando aplicacion Quarkus");
-        System.out.println("Hello, World!");
 
         Pedido pedido = new Pedido("Juan", "laptop", 15000.0, "juan@gmail.com");
         
