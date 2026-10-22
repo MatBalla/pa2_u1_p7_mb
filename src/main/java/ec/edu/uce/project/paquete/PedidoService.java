@@ -2,6 +2,7 @@ package ec.edu.uce.project.paquete;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.inject.spi.CDI;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
@@ -10,30 +11,14 @@ import jakarta.inject.Singleton;
 //@Singleton // porogramar otra cosa que NO SEA LOGICA
 @ApplicationScoped //Delego el control al contenedor ArC - logica de negocio
 public class PedidoService {
-    //Dependency Inyection por atributo
-    //@Inject
-    //public MailService mailService;
-    ////////////////////////////////////////////////////
-    //Dependency Inyection por constructor
-    public MailService mailService;
+    //@Inject 
+    //private MailService mailService2;
     
-    //Inyeccion de dependencias por constructor
-    @Inject
-    public PedidoService(MailService mailService){
-        this.mailService = mailService;
-    }
-    ////////////////////////////////////////////////////
-    //Dependency Inyection por metodo set
-    //private MailService mailService;
- 
-    //@Inject
-    //public void setMailService(MailService mailService) {
-    //    System.out.println("Se esta inyectando el servicio de correo");
-
-    //    this.mailService = mailService;
-    //}
-
+    //Lookup de la clase MailServie
+        MailService mailService = CDI.current().select(MailService.class).get(); //Se obtiene el objeto de la clase MailService
+    
     public void realizar(Pedido pedido ){
+        
         System.out.println("Realizado pedido...");
         System.out.println("" + pedido.getCliente());
         System.out.println("" + pedido.getProducto());
