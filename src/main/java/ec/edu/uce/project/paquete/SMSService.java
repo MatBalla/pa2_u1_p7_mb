@@ -15,4 +15,14 @@ public class SMSService implements Notificacion{
         System.out.println("Fin del envio de SMS");
     }
 
+     public Integer getCantidad() {
+        return 0;
+    }
+
+
+    public void setCantidad(Integer cantidad) {
+        //this.cantidad = cantidad;
+    }
+
+
 }

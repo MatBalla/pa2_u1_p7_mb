@@ -35,9 +35,13 @@ public class PedidoService {
 
         //Notificacion de pedido por correo
         this.notificacionCorreo.enviar(pedido.getCorreo(), cuerpo);
+        this.notificacionCorreo.setCantidad(this.notificacionCorreo.getCantidad()+1);
+        System.out.println("Cantidad de correos enviados Pedido: " + this.notificacionCorreo.getCantidad());
+        this.notificacionCorreo.setNombre("Correo de pedido");
         
         //Notificacion de pedido por SMS
         this.notificacionSMS.enviar(pedido.getTelefono(), cuerpo);
+        
         
     }
 
