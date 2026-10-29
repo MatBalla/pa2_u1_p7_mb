@@ -6,7 +6,8 @@ import jakarta.inject.Singleton;
 @Singleton 
 @Named ("sms") //Se le da un nombre a la clase para que pueda ser inyectada en otras clases
 public class SMSService implements Notificacion{
-    
+    public String nombre = null;
+    public Integer cantidad = 0;
     @Override
     public void enviar(String destino, String mensaje) {
         System.out.println("Enviar SMS a " + destino);
@@ -21,8 +22,15 @@ public class SMSService implements Notificacion{
 
 
     public void setCantidad(Integer cantidad) {
-        //this.cantidad = cantidad;
+        this.cantidad = cantidad;
     }
 
+    public String getNombre(){
+         return null;
+     }
+
+     public void setNombre(String nombre){
+         this.nombre = nombre;
+     }
 
 }

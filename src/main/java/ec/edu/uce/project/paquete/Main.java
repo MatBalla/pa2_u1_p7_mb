@@ -10,8 +10,7 @@ public class Main implements QuarkusApplication {//Se implementa la interfaz Qua
 
     @Inject 
     private PedidoService pedidoService; //Inyeccion por atributo, se usa la anotacion @Inject para que el contenedor ArC se encargue de crear el objeto e inyectarlo en la clase Main
-    @Inject
-    private CompraService compraService;
+    
     public static void main(String[] args) {
         Quarkus.run(Main.class, args);
 
@@ -24,11 +23,8 @@ public class Main implements QuarkusApplication {//Se implementa la interfaz Qua
 
         Pedido pedido = new Pedido("Juan", "laptop", 15000.0, "juan@gmail.com");
         pedido.setTelefono("0963629703");
-        this.pedidoService.realizar(pedido); //creamos manualmente el objeto de la clase Producto
+        this.pedidoService.realizar(pedido, "valor1"); //creamos manualmente el objeto de la clase Producto
         
-        Compra compra = new Compra("Maria", "celular", 800.0, "maria@gmail.com");
-        compra.setTelefono("0963629704");
-        this.compraService.realizar(compra);
 
         
         return 0;

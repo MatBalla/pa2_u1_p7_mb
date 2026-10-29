@@ -1,5 +1,6 @@
 package ec.edu.uce.project.paquete;
 
+import ec.edu.uce.project.paquete.Interceptors.Auditoria;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.spi.CDI;
@@ -8,41 +9,19 @@ import jakarta.inject.Named;
 import jakarta.inject.Singleton;
 
 
-//@RequestScoped //Solo vive en aplicaciones web
-//@Singleton // porogramar otra cosa que NO SEA LOGICA
-@ApplicationScoped //Delego el control al contenedor ArC - logica de negocio
-public class PedidoService {
-    @Inject
-    @Named ("correo") //Se le indica al contenedor ArC que inyecte la clase MailService en la variable notificacionCorreo
-    private Notificacion notificacionCorreo;
-    @Inject
-    @Named ("sms") //Se le indica al contenedor ArC que inyecte la clase SMSService en la variable notificacionSMS
-    private Notificacion notificacionSMS;
 
-    
+@ApplicationScoped
+public class PedidoService {
        
-    public void realizar(Pedido pedido ){
+    @Auditoria
+    public String realizar(Pedido pedido, String valor1 ){
         
         System.out.println("Realizado pedido...");
-        System.out.println("" + pedido.getCliente());
-        System.out.println("" + pedido.getProducto());
-        System.out.println("" + pedido.getTotal());
-        System.out.println("" + pedido.getCorreo());
-
-        String cuerpo = "Estimado " + pedido.getCliente() + ", su pedido de " + 
-        pedido.getProducto() + " por un total de $" + pedido.getTotal() +
-        " ha salido con exito"; 
-
-        //Notificacion de pedido por correo
-        this.notificacionCorreo.enviar(pedido.getCorreo(), cuerpo);
-        this.notificacionCorreo.setCantidad(this.notificacionCorreo.getCantidad()+1);
-        System.out.println("Cantidad de correos enviados Pedido: " + this.notificacionCorreo.getCantidad());
-        this.notificacionCorreo.setNombre("Correo de pedido");
-        
-        //Notificacion de pedido por SMS
-        this.notificacionSMS.enviar(pedido.getTelefono(), cuerpo);
-        
-        
+        System.out.println("Cliente: " + pedido.getCliente());
+        System.out.println("Producto: " + pedido.getProducto());
+        System.out.println("Total: " + pedido.getTotal());
+        System.out.println("Correo: " + pedido.getCorreo());
+        return "Pedido realizado con éxito";
     }
 
 }
