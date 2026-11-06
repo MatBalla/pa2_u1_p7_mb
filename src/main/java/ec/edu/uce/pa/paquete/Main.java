@@ -25,8 +25,8 @@ public class Main implements QuarkusApplication{
         this.matriculaService.matricular(persona1, "valor 1");
 
         System.out.println("-----------------------------");
-        Persona persona2 = new Persona("Ismael", "abi2026", "isma@gmail.com", "ABC-1234");
-        this.matriculaService.matricular(persona2, "valor 2");
+        //Persona persona2 = new Persona("Ismael", "abi2026", "isma@gmail.com", "ABC-1234");
+        //this.matriculaService.matricular(persona2, "valor 2");
 
        return 0;
     }

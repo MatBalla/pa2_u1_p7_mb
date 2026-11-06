@@ -3,6 +3,7 @@ package ec.edu.uce.pa.paquete.login;
 import java.lang.reflect.Parameter;
 import ec.edu.uce.pa.paquete.LoginService;
 import ec.edu.uce.pa.paquete.Persona;
+import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
@@ -10,6 +11,7 @@ import jakarta.interceptor.InvocationContext;
 
 @Login 
 @Interceptor 
+@Priority (Interceptor.Priority.APPLICATION +2)
 public class LoginInterceptor {
 
     @Inject 
