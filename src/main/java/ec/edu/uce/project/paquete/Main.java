@@ -1,5 +1,8 @@
 package ec.edu.uce.project.paquete;
 
+import ec.edu.uce.project.paquete.extensiones.NotificacionExtensionMail;
+import ec.edu.uce.project.paquete.extensiones.NotificacionExtensionSMS;
+import ec.edu.uce.project.paquete.extensiones.NotificacionExtensionWhatsApp;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -9,24 +12,42 @@ import jakarta.inject.Inject;
 public class Main implements QuarkusApplication {//Se implementa la interfaz QuarkusApplication
 
     @Inject 
-    private PedidoService pedidoService; //Inyeccion por atributo, se usa la anotacion @Inject para que el contenedor ArC se encargue de crear el objeto e inyectarlo en la clase Main
+    private CompraService compraService; 
+
+    @Inject
+    private NotificacionExtensionMail notificacionExtensionMail;
+
+    @Inject 
+    private NotificacionExtensionSMS notificacionExtensionSms;
+
+    @Inject 
+    private NotificacionExtensionWhatsApp notificacionExtensionWhatsApp;
     
     public static void main(String[] args) {
         Quarkus.run(Main.class, args);
 
     }
 
+    
     //Todo se hace en este metodo run
     @Override 
     public int run(String... args){ //Se implementa el metodo run de la interfaz QuarkusApplication
         System.out.println("Iniciando aplicacion Quarkus");
 
-        Pedido pedido = new Pedido("Juan", "laptop", 15000.0, "juan@gmail.com");
-        pedido.setTelefono("0963629703");
-        this.pedidoService.realizar(pedido, "valor1"); //creamos manualmente el objeto de la clase Producto
-        
+       Compra compra = new Compra("Juan Caranqui", "Laptop", 1200.00, "juan@gmail.com");
+        compraService.realizar(compra, notificacionExtensionMail);
 
+        System.out.println("--------------------------------------------------");
         
+        Compra compra2 = new Compra("Ismael Andrango", "Laptop", 1200.00, "ismael@gmail.com");
+        compraService.realizar(compra2, notificacionExtensionSms);
+        
+        System.out.println("--------------------------------------------------");
+
+        //Se crea la extension, sin topar la clase CompraService
+        Compra compra3 = new Compra("Joseph Caiza", "Laptop", 1200.00, "joseph@gmail.com");
+        compraService.realizar(compra3, notificacionExtensionWhatsApp);
+
         return 0;
     }
 }

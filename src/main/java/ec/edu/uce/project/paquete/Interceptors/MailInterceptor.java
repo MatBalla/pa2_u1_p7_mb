@@ -7,7 +7,7 @@ import jakarta.interceptor.InvocationContext;
 
 @Interceptor
 @Mail
-@Priority (Interceptor.Priority.APPLICATION)
+@Priority (Interceptor.Priority.APPLICATION+1)
 public class MailInterceptor {
     @AroundInvoke
     public Object interceptar(InvocationContext context) throws Exception{

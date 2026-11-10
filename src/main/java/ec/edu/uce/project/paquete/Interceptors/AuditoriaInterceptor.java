@@ -12,7 +12,7 @@ import jakarta.interceptor.InvocationContext;
 
 @Auditoria 
 @Interceptor
-@Priority (Interceptor.Priority.APPLICATION + 2)
+@Priority (Interceptor.Priority.APPLICATION + 3)
 public class AuditoriaInterceptor {
 
     @Inject 

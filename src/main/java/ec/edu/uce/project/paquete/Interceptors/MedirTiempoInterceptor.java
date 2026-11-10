@@ -5,9 +5,9 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 
-@Interceptor
 @MedirTiempo
-@Priority (Interceptor.Priority.APPLICATION + 3)
+@Interceptor
+@Priority (Interceptor.Priority.APPLICATION + 4)
 public class MedirTiempoInterceptor {
 
     @AroundInvoke

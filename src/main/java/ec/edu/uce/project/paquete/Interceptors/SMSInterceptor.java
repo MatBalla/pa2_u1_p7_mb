@@ -7,7 +7,7 @@ import jakarta.interceptor.InvocationContext;
 
 @Interceptor
 @SMS
-@Priority (Interceptor.Priority.APPLICATION + 1)
+@Priority (Interceptor.Priority.APPLICATION + 2)
 public class SMSInterceptor {
     @AroundInvoke
     public Object interceptar(InvocationContext context) throws Exception{
